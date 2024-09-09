@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "My Claims";
+}
+
+<h2>My Claims</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Claim Date</th>
+            <th>Programme</th>
+            <th>Claim Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@*         <!-- Loop through the list of claims -->
+        @foreach (var claim in Model.Claims)
+        {
+            <tr>
+                <td>@claim.ClaimDate.ToString("yyyy-MM-dd")</td>
+                <td>@claim.Programme</td>
+                <td>@claim.ClaimAmount.ToString("C")</td>
+                <td>@claim.Status</td>
+                <td>
+                    <a href="/Claims/Details/@claim.Id" class="btn btn-info btn-sm">View Details</a>
+                    <a href="/Claims/Edit/@claim.Id" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/Claims/Delete/@claim.Id" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        } *@
+    </tbody>
+</table>

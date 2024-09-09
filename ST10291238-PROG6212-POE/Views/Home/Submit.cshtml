@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Submit Claim";
+}
+
+<h2>Submit New Claim</h2>
+
+<form asp-action="Submit" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="ClaimDate">Claim Date</label>
+        <input type="date" class="form-control" id="ClaimDate" name="ClaimDate" required />
+    </div>
+    <div class="form-group">
+        <label for="Programme">Programme</label>
+        <input type="text" class="form-control" id="Programme" name="Programme" required />
+    </div>
+    <div class="form-group">
+        <label for="ClaimAmount">Claim Amount</label>
+        <input type="number" class="form-control" id="ClaimAmount" name="ClaimAmount" required />
+    </div>
+    <div class="form-group">
+        <label for="SupportingDocuments">Upload Supporting Documents</label>
+        <input type="file" class="form-control-file" id="SupportingDocuments" name="SupportingDocuments" multiple />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Claim</button>
+    <a href="/" class="btn btn-secondary">Cancel</a>
+</form>

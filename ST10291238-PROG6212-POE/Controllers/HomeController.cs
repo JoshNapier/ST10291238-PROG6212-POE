@@ -23,6 +23,26 @@ namespace ST10291238_PROG6212_POE.Controllers
             return View();
         }
 
+        public IActionResult Submit()
+        {
+            return View();
+        }
+
+        public IActionResult MyClaims()
+        {
+            return View();
+        }
+
+        public IActionResult Approvals()
+        {
+            return View();
+        }
+
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
