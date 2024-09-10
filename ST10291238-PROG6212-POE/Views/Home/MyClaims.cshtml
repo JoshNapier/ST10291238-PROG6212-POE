@@ -7,6 +7,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            @*The headings for each coloumn of the table*@
             <th>Claim Date</th>
             <th>Programme</th>
             <th>Claim Amount</th>
@@ -15,24 +16,9 @@
         </tr>
     </thead>
     <tbody>
-@*         <!-- Loop through the list of claims -->
-        @foreach (var claim in Model.Claims)
-        {
-            <tr>
-                <td>@claim.ClaimDate.ToString("yyyy-MM-dd")</td>
-                <td>@claim.Programme</td>
-                <td>@claim.ClaimAmount.ToString("C")</td>
-                <td>@claim.Status</td>
-                <td>
-                    <a href="/Claims/Details/@claim.Id" class="btn btn-info btn-sm">View Details</a>
-                    <a href="/Claims/Edit/@claim.Id" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="/Claims/Delete/@claim.Id" class="btn btn-danger btn-sm">Delete</a>
-                </td>
-            </tr>
-        } *@
-
         <tr>
-            <td>2021-09-01</td>
+            @*Adding sample data to showcase the layout of the table in the MyClaims page*@
+            <td>01-09-2024</td>
             <td>PROG6212</td>
             <td>R 500.00</td>
             <td>Pending</td>

@@ -6,7 +6,8 @@
 
 <table class="table table-striped">
     <thead>
-        <tr>
+        <tr> 
+            @*The headings for each coloumn of the table*@
             <th>Lecturer Name</th>
             <th>Programme</th>
             <th>Claim Amount</th>
@@ -15,26 +16,12 @@
         </tr>
     </thead>
     <tbody>
-@*         <!-- Loop through the list of pending claims -->
-        @foreach (var claim in Model.PendingClaims)
-        {
-            <tr>
-                <td>@claim.LecturerName</td>
-                <td>@claim.Programme</td>
-                <td>@claim.ClaimAmount.ToString("C")</td>
-                <td>@claim.SubmissionDate.ToString("yyyy-MM-dd")</td>
-                <td>
-                    <a href="/Claims/Details/@claim.Id" class="btn btn-info btn-sm">View Details</a>
-                    <a href="/Claims/Approve/@claim.Id" class="btn btn-success btn-sm">Approve</a>
-                    <a href="/Claims/Reject/@claim.Id" class="btn btn-danger btn-sm">Reject</a>
-                </td>
-            </tr>
-        } *@
-        <tr>
+        <tr> 
+            @*Adding sample data to showcase the layout of the table in the Approvals page*@
             <td>John Doe</td>
             <td>PROG6212</td>
             <td>R 500.00</td>
-            <td>2021-09-01</td>
+            <td>01-09-2024</td>
             <td>
                 <a class="btn btn-info btn-sm">View Details</a>
                 <a class="btn btn-success btn-sm">Approve</a>
