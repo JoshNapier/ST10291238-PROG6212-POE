@@ -20,7 +20,7 @@ namespace ST10291238_PROG6212_POE.Models
 
         public int HoursWorked { get; set; }
 
-        public double ClaimAmount => HourlyRate * HoursWorked;
+        public double ClaimAmount { get; set; }
 
         public string Status { get; set; } = "Pending";
 

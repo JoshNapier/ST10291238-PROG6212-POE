@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ST10291238_PROG6212_POE.Data;
 using ST10291238_PROG6212_POE.Models;
 
 namespace ST10291238_PROG6212_POE.Controllers
 {
     public class ClaimsTableController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
         public IActionResult Index()
         {
             return View();

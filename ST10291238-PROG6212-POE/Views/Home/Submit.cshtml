@@ -6,11 +6,16 @@
 
 @*Form for inputting claim details*@
 
-<form asp-action="Submit" method="post" enctype="multipart/form-data">
-    <div class="form-group"> 
+<form asp-action="ClaimsTable" asp-action="Submit" enctype="multipart/form-data">
+    <div class="form-group">
         @*Form field for capturing the date of the claim*@
-        <label for="ClaimDate">Claim Date</label>
-        <input type="date" class="form-control" id="ClaimDate" name="ClaimDate" required />
+        <label for="LecturerName">Lecturer Name</label>
+        <input type="text" class="form-control" id="LecturerName" name="LecturerName" required />
+    </div>
+    <div class="form-group">
+        @*Form field for capturing the date of the claim*@
+        <label for="LecturerSurname">Lecturer Surname</label>
+        <input type="text" class="form-control" id="LecturerSurname" name="LecturerSurname" required />
     </div>
     <div class="form-group">
         @*Form field for capturing the Programme the claim belongs to*@
@@ -18,10 +23,23 @@
         <input type="text" class="form-control" id="Programme" name="Programme" required />
     </div>
     <div class="form-group">
-        @*Form field for capturing the amount the claim is for*@
-        <label for="ClaimAmount">Claim Amount</label>
-        <input type="number" class="form-control" id="ClaimAmount" name="ClaimAmount" required />
+        <label for="HoursWorked">Hours Worked</label>
+        <input type="number" class="form-control" id="HoursWorked" name="HoursWorked" required />
     </div>
+    <div class="form-group">
+        <label for="HourlyRate">Hourly Rate</label>
+        <input type="number" class="form-control" id="HourlyRate" name="HourlyRate" required />
+    </div>
+    <div class="form-group">
+        <label for="Notes">Additional Notes</label>
+        <textarea class="form-control" id="Notes" name="Notes"></textarea>
+    </div>
+    <div class="form-group"> 
+        @*Form field for capturing the date of the claim*@
+        <label for="ClaimDate">Claim Date</label>
+        <input type="date" class="form-control" id="ClaimDate" name="ClaimDate" required />
+    </div>
+
     <div class="form-group">
         @*Form field for capturing the any supporting file documents related to the claim*@
         <label for="SupportingDocuments">Upload Supporting Documents</label>

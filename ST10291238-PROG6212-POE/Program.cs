@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using ST10291238_PROG6212_POE.Data;
+
 namespace ST10291238_PROG6212_POE
 {
     public class Program
@@ -8,6 +11,9 @@ namespace ST10291238_PROG6212_POE
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<ApplicationDbContext>(Options =>
+            Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
