@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ST10291238_PROG6212_POE.Data;
 using ST10291238_PROG6212_POE.Models;
+using System.Security.Claims;
 
 namespace ST10291238_PROG6212_POE.Controllers
 {
@@ -9,40 +10,47 @@ namespace ST10291238_PROG6212_POE.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        public ClaimsTableController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Submit(ClaimsTable claim, IFormFileCollection supportingDocuments)
+        public async Task<IActionResult> Submit(ClaimsTable claim, IFormFile supportingDocuments)
         {
-            // Save claim to database
-            _context.Claims.Add(claim);
-            _context.SaveChanges();
-
-            // Handle file upload
-            if (supportingDocuments != null && supportingDocuments.Count > 0)
+            if (supportingDocuments != null && supportingDocuments.Length > 0)
             {
-                foreach (var document in supportingDocuments)
+                var uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                var fileName = Path.GetFileName(supportingDocuments.FileName);
+
+                if (!Directory.Exists(uploadsPath))
                 {
-                    if (document.Length > 0 &&
-                        (Path.GetExtension(document.FileName) == ".pdf" ||
-                         Path.GetExtension(document.FileName) == ".docx" ||
-                         Path.GetExtension(document.FileName) == ".xlsx"))
-                    {
-                        var filePath = Path.Combine("Uploads", document.FileName);
-                        using (var stream = System.IO.File.Create(filePath))
-                        {
-                            document.CopyTo(stream);
-                        }
-                        claim.Documents += filePath + ";";
-                    }
+                    Directory.CreateDirectory(uploadsPath);
                 }
-                _context.SaveChanges();
+
+                var filePath = Path.Combine(uploadsPath, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await supportingDocuments.CopyToAsync(stream);
+                }
+
+                claim.Documents = "/uploads/" + fileName;
+
+                claim.Status = "Pending";
+                _context.Claims.Add(claim);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("MyClaims");
             }
 
-            return RedirectToAction("MyClaims");
+            return View(claim);
+
         }
     }
 }
