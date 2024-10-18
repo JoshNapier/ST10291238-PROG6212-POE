@@ -27,9 +27,12 @@
                     <td>@claim.ClaimAmount</td>
                     <td>@claim.ClaimDate.ToShortDateString()</td>
                     <td>
-                        <a class="btn btn-info btn-sm">View Details</a>
-                        <a class="btn btn-success btn-sm">Approve</a>
-                        <a class="btn btn-danger btn-sm">Reject</a>
+                        <a class="btn btn-success btn-sm">Approve
+                            @claim.Status = "Approved"
+                        </a>
+                        <a class="btn btn-danger btn-sm">Reject
+                            @claim.Status = "Rejected"
+                        </a>
                     </td>
                 </tr>
             }

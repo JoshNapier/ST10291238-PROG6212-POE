@@ -43,6 +43,8 @@ namespace ST10291238_PROG6212_POE.Controllers
 
         public IActionResult Approvals()
         {
+            var claims = _context.Claims.ToList();
+            ViewData["Claims"] = claims;
             return View();
         }
 
