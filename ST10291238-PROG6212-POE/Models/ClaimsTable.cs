@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using ST10291238_PROG6212_POE.Data;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 
 namespace ST10291238_PROG6212_POE.Models
@@ -27,5 +29,12 @@ namespace ST10291238_PROG6212_POE.Models
         public string Notes { get; set; }
 
         public string Documents { get; set; }
+
+        public static async Task<List<ClaimsTable>> SelectClaims(ApplicationDbContext context)
+        {
+            List<ClaimsTable> claims = new List<ClaimsTable>();
+            claims.AddRange(await context.Claims.ToListAsync());
+            return claims;
+        }
     }
 }

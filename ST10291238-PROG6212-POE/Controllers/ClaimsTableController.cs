@@ -42,6 +42,8 @@ namespace ST10291238_PROG6212_POE.Controllers
 
                 claim.Documents = "/uploads/" + fileName;
 
+                claim.ClaimAmount = claim.HourlyRate * claim.HoursWorked;
+
                 claim.Status = "Pending";
                 _context.Claims.Add(claim);
                 await _context.SaveChangesAsync();
@@ -50,7 +52,6 @@ namespace ST10291238_PROG6212_POE.Controllers
             }
 
             return View(claim);
-
         }
     }
 }

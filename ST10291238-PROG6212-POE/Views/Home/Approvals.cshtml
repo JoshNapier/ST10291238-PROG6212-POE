@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Approvals";
+    var claims = ViewData["Claims"] as List<ST10291238_PROG6212_POE.Models.ClaimsTable>;
 }
 
 <h2>Pending Claims for Approval</h2>
@@ -16,16 +17,22 @@
         </tr>
     </thead>
     <tbody>
-        <tr> 
-            @*Adding sample data to showcase the layout of the table in the Approvals page*@
-            <td>John Doe</td>
-            <td>PROG6212</td>
-            <td>R 500.00</td>
-            <td>01-09-2024</td>
-            <td>
-                <a class="btn btn-info btn-sm">View Details</a>
-                <a class="btn btn-success btn-sm">Approve</a>
-                <a class="btn btn-danger btn-sm">Reject</a>
-            </td>
+        @if (claims != null)
+        {
+            @foreach (var claim in claims)
+            {
+                <tr>
+                    <td>@claim.LecturerName @claim.LecturerSurname</td>
+                    <td>@claim.Programme</td>
+                    <td>@claim.ClaimAmount</td>
+                    <td>@claim.ClaimDate.ToShortDateString()</td>
+                    <td>
+                        <a class="btn btn-info btn-sm">View Details</a>
+                        <a class="btn btn-success btn-sm">Approve</a>
+                        <a class="btn btn-danger btn-sm">Reject</a>
+                    </td>
+                </tr>
+            }
+        }
     </tbody>
 </table>

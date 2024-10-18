@@ -1,5 +1,7 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "My Claims";
+    var claims = ViewData["Claims"] as List<ST10291238_PROG6212_POE.Models.ClaimsTable>;
 }
 
 <h2>My Claims</h2>
@@ -7,26 +9,29 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            @*The headings for each coloumn of the table*@
-            <th>Claim Date</th>
+            <th>Claim ID</th>
+            <th>Lecturer Name</th>
             <th>Programme</th>
+            <th>Claim Date</th>
             <th>Claim Amount</th>
             <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            @*Adding sample data to showcase the layout of the table in the MyClaims page*@
-            <td>01-09-2024</td>
-            <td>PROG6212</td>
-            <td>R 500.00</td>
-            <td>Pending</td>
-            <td>
-                <a class="btn btn-info btn-sm">View Details</a>
-                <a class="btn btn-warning btn-sm">Edit</a>
-                <a class="btn btn-danger btn-sm">Delete</a>
-            </td>
-        </tr>
+        @if (claims != null)
+        {
+            @foreach (var claim in claims)
+            {
+                <tr>
+                    <td>@claim.ClaimId</td>
+                    <td>@claim.LecturerName @claim.LecturerSurname</td>
+                    <td>@claim.Programme</td>
+                    <td>@claim.ClaimDate.ToShortDateString()</td>
+                    <td>@claim.ClaimAmount</td>
+                    <td>@claim.Status</td>
+                </tr>
+            }
+        }
     </tbody>
 </table>
