@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ST10291238_PROG6212_POE.Data;
 using ST10291238_PROG6212_POE.Models;
+using ST10291238_PROG6212_POE.Services;
 using System.Diagnostics;
 using System.Security.Claims;
 
@@ -51,6 +52,20 @@ namespace ST10291238_PROG6212_POE.Controllers
         public IActionResult Admin()
         {
             return View();
+        }
+
+        public IActionResult Lecturers()
+        {
+            return View();
+        }
+
+        public IActionResult GenerateReport()
+        {
+            var claims = _context.Claims.Where(c => c.Status == "Approved").ToList();
+            var reportService = new ReportService();
+            var reportBytes = reportService.GenerateApprovedClaimsReport(claims);
+
+            return File(reportBytes, "text/csv", "ApprovedClaimsReport.csv");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
